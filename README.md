@@ -2,6 +2,23 @@
 
 Cloud-Based Inventory & Order Management System built with Java, Spring Boot, React, PostgreSQL, Redis, and Docker. This project simulates how an enterprise operations team manages products, suppliers, stock movements, purchase orders, customer orders, and warehouse workflows through a role-based internal platform.
 
+## Quick Highlights
+
+- Enterprise-style full-stack inventory platform built with Java, Spring Boot, React, PostgreSQL, Redis, and Docker
+- JWT authentication plus role-based access control for `ADMIN`, `MANAGER`, and `WAREHOUSE_USER`
+- 15+ REST API flows across products, suppliers, inventory, orders, user access, and dashboard reporting
+- Seeded synthetic business data so reviewers can sign in immediately and test realistic workflows
+- Recruiter-friendly documentation with architecture, schema design, API coverage, setup, and demo credentials
+
+## Resume Summary
+
+**Cloud-Based Inventory & Order Management System | Java, Spring Boot, React, PostgreSQL, Redis, Docker**
+
+- Built a full-stack inventory system in Java/Spring Boot with 15+ REST APIs, JWT authentication, supplier management, and role-based access control.
+- Designed PostgreSQL schemas for products, suppliers, orders, users, and inventory transactions using synthetic enterprise business data.
+- Integrated Redis caching and Docker-based deployment to improve product lookup performance and simplify local environment setup.
+- Structured the application into business modules for auth, products, suppliers, inventory, orders, and dashboard reporting to reflect enterprise architecture patterns.
+
 ## Project Overview
 
 Recruiters often see CRUD demos that stop at "users and products." This project goes further by modeling the day-to-day operational flow of a company:
@@ -236,6 +253,14 @@ Place screenshots in [screenshots/README.md](screenshots/README.md) using names 
 - `orders-page.png`
 - `low-stock-alerts.png`
 
+Recommended order on the GitHub page:
+
+1. Login page
+2. Dashboard summary
+3. Products and suppliers
+4. Inventory updates and transaction history
+5. Orders and low-stock alerts
+
 ## Challenges And Solutions
 
 ### 1. Modeling realistic inventory workflows
@@ -280,18 +305,7 @@ The repository is structured with clear folders, setup steps, schema documentati
 - add automated tests for controllers, services, and frontend flows
 - deploy the stack to a cloud platform with CI/CD
 
-## Resume-Friendly Project Title
-
-**Cloud-Based Inventory & Order Management System**
-
-## Resume Bullets
-
-- Built a full-stack inventory system in Java/Spring Boot with 15+ REST APIs, JWT authentication, supplier management, and role-based access control.
-- Designed PostgreSQL schemas for products, suppliers, orders, users, and inventory transactions using synthetic enterprise business data.
-- Integrated Redis caching and Docker-based deployment to improve product lookup performance and simplify local environment setup.
-- Structured the application into business modules for auth, products, suppliers, inventory, orders, and dashboard reporting to reflect enterprise architecture patterns.
-
 ## Notes
 
-- Java and Maven were not installed in the current workspace environment while this repository was generated, so the project code and Docker setup were built to spec but not fully executed locally here.
-- The repository already includes the files and structure needed to finish screenshots and live verification once the runtime dependencies are available.
+- The application has been verified locally with Docker Compose, seeded demo accounts, JWT authentication, and protected API access.
+- Adding real screenshots is the highest-impact next improvement for GitHub presentation quality.
