@@ -10,6 +10,10 @@ flowchart LR
     F --> B
     F --> D
     F --> E
+    G["Kubernetes"] --> A
+    G --> B
+    G --> D
+    G --> E
 ```
 
 ## Key design notes
@@ -19,3 +23,4 @@ flowchart LR
 - PostgreSQL stores operational business records such as products, suppliers, users, stock movements, and orders.
 - Redis caches product and low-stock queries to reduce repeated database reads.
 - Docker Compose provides a one-command local environment for frontend, backend, PostgreSQL, and Redis.
+- Kubernetes manifests provide a cluster-ready deployment path for frontend, backend, PostgreSQL, and Redis services.

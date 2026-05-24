@@ -1,10 +1,10 @@
 # cloud-inventory-order-management
 
-Cloud-Based Inventory & Order Management System built with Java, Spring Boot, React, PostgreSQL, Redis, and Docker. This project simulates how an enterprise operations team manages products, suppliers, stock movements, purchase orders, customer orders, and warehouse workflows through a role-based internal platform.
+Cloud-Based Inventory & Order Management System built with Java, Spring Boot, React, PostgreSQL, Redis, Docker, and Kubernetes manifests. This project simulates how an enterprise operations team manages products, suppliers, stock movements, purchase orders, customer orders, and warehouse workflows through a role-based internal platform.
 
 ## Quick Highlights
 
-- Enterprise-style full-stack inventory platform built with Java, Spring Boot, React, PostgreSQL, Redis, and Docker
+- Enterprise-style full-stack inventory platform built with Java, Spring Boot, React, PostgreSQL, Redis, Docker, and Kubernetes-ready manifests
 - JWT authentication plus role-based access control for `ADMIN`, `MANAGER`, and `WAREHOUSE_USER`
 - 15+ REST API flows across products, suppliers, inventory, orders, user access, and dashboard reporting
 - Seeded synthetic business data so reviewers can sign in immediately and test realistic workflows
@@ -12,12 +12,12 @@ Cloud-Based Inventory & Order Management System built with Java, Spring Boot, Re
 
 ## Resume Summary
 
-**Cloud-Based Inventory & Order Management System | Java, Spring Boot, React, PostgreSQL, Redis, Docker**
+**Cloud-Based Inventory & Order Management System | Java, Spring Boot, React, PostgreSQL, Redis, Docker, Kubernetes**
 
 - Built a full-stack inventory system in Java/Spring Boot with 15+ REST APIs, JWT authentication, supplier management, and role-based access control.
 - Designed PostgreSQL schemas for products, suppliers, orders, users, and inventory transactions using synthetic enterprise business data.
-- Integrated Redis caching and Docker-based deployment to improve product lookup performance and simplify local environment setup.
-- Structured the application into business modules for auth, products, suppliers, inventory, orders, and dashboard reporting to reflect enterprise architecture patterns.
+- Integrated Redis caching plus Docker and Kubernetes deployment assets to improve data retrieval workflows and support consistent environment-based deployment.
+- Reduced N+1-style product and order read inefficiencies using fetch optimization and database-side aggregation for inventory-heavy workflows.
 
 ## Project Overview
 
@@ -29,6 +29,7 @@ Recruiters often see CRUD demos that stop at "users and products." This project 
 - operations teams create customer orders and purchase orders
 - low-stock alerts and dashboard summaries help support replenishment decisions
 - Redis caching reduces repeated reads for product and inventory-heavy views
+- Kubernetes manifests extend the deployment story beyond local Docker Compose into cluster-based environments
 
 ## Problem Statement
 
@@ -83,6 +84,7 @@ This project was designed to simulate that operational environment using synthet
 
 - Docker
 - Docker Compose
+- Kubernetes
 
 ## System Architecture
 
@@ -96,6 +98,10 @@ flowchart LR
     DEV --> API
     DEV --> DB
     DEV --> CACHE
+    K8S["Kubernetes Manifests"] --> UI
+    K8S --> API
+    K8S --> DB
+    K8S --> CACHE
 ```
 
 More detail: [architecture.md](docs/architecture.md)
@@ -108,6 +114,7 @@ cloud-inventory-order-management/
 ├── frontend/
 ├── backend/
 ├── database/
+├── k8s/
 ├── docker-compose.yml
 ├── .env.example
 ├── screenshots/
@@ -184,6 +191,8 @@ This application uses synthetic enterprise-style sample data so the data origin 
 
 Schema explanation: [database-schema.md](docs/database-schema.md)
 
+This repository includes 8+ operational tables and relationships across users, roles, product catalogs, supplier records, inventory transactions, sales orders, order items, and purchase orders.
+
 ## API Endpoints
 
 ### Authentication
@@ -231,6 +240,15 @@ Full endpoint list: [api-endpoints.md](docs/api-endpoints.md)
 2. Run `docker compose up --build`.
 3. Open the frontend at [http://localhost:3000](http://localhost:3000).
 4. The backend API will be available at [http://localhost:8080](http://localhost:8080).
+
+### Option 1B: Kubernetes
+
+1. Build and publish backend and frontend images to your registry.
+2. Copy `k8s/base/secret.example.yaml` to `k8s/base/secret.yaml` and replace placeholder values.
+3. Apply the Kubernetes manifests:
+   `kubectl apply -f k8s/base/secret.yaml`
+   `kubectl apply -k k8s/base`
+4. Review the deployment guide in [kubernetes-deployment.md](docs/kubernetes-deployment.md).
 
 ### Option 2: Run services manually
 
@@ -285,7 +303,7 @@ Challenge:
 Products and low-stock dashboards are read frequently and can create unnecessary repeated database access.
 
 Solution:
-Redis caching is used for product and low-stock queries so common inventory views can be served faster.
+Redis caching is used for product and low-stock queries, while optimized entity loading and database-side aggregation reduce unnecessary repeated reads in inventory-heavy flows.
 
 ### 4. Making the project easy to review
 
@@ -304,8 +322,10 @@ The repository is structured with clear folders, setup steps, schema documentati
 - expand analytics with demand forecasting and supplier performance KPIs
 - add automated tests for controllers, services, and frontend flows
 - deploy the stack to a cloud platform with CI/CD
+- add Helm charts and environment-specific Kubernetes overlays
 
 ## Notes
 
 - The application has been verified locally with Docker Compose, seeded demo accounts, JWT authentication, and protected API access.
+- Kubernetes manifests are included for cluster-oriented deployment workflows, but image names and secrets should be adjusted for your target environment before production use.
 - Adding real screenshots is the highest-impact next improvement for GitHub presentation quality.

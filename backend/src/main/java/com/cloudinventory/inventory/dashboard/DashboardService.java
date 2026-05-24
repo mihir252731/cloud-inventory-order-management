@@ -36,13 +36,8 @@ public class DashboardService {
     }
 
     public DashboardSummaryResponse getSummary() {
-        int totalStockUnits = productRepository.findAll().stream()
-                .mapToInt(product -> product.getStockQuantity() == null ? 0 : product.getStockQuantity())
-                .sum();
-
-        long lowStockItems = productRepository.findAll().stream()
-                .filter(product -> product.getStockQuantity() <= product.getReorderLevel())
-                .count();
+        int totalStockUnits = Math.toIntExact(productRepository.sumStockQuantity());
+        long lowStockItems = productRepository.countLowStockProducts();
 
         long openCustomerOrders = customerOrderRepository.countByStatusIn(
                 List.of(OrderStatus.PENDING, OrderStatus.PROCESSING, OrderStatus.PICKED, OrderStatus.SHIPPED)
@@ -51,9 +46,7 @@ public class DashboardService {
         long pendingPurchaseOrders = purchaseOrderRepository.countByStatus(PurchaseOrderStatus.APPROVED)
                 + purchaseOrderRepository.countByStatus(PurchaseOrderStatus.IN_TRANSIT);
 
-        long activeUsers = userRepository.findAll().stream()
-                .filter(user -> user.isActive())
-                .count();
+        long activeUsers = userRepository.countByActiveTrue();
 
         return new DashboardSummaryResponse(
                 productRepository.count(),

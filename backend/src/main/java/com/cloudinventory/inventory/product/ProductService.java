@@ -53,8 +53,7 @@ public class ProductService {
 
     @Cacheable("lowStockProducts")
     public List<LowStockProductResponse> getLowStockProducts() {
-        return productRepository.findAll().stream()
-                .filter(product -> product.getStockQuantity() <= product.getReorderLevel())
+        return productRepository.findLowStockProducts().stream()
                 .map(LowStockProductResponse::from)
                 .toList();
     }
