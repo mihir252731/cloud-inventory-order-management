@@ -61,8 +61,8 @@ export function IntegrationsPage() {
         <p className="text-sm uppercase tracking-[0.25em] text-teal-700">Integration Hub</p>
         <h2 className="mt-2 text-3xl font-semibold text-slate-900">{overview.projectName}</h2>
         <p className="mt-3 max-w-3xl text-sm text-slate-600">
-          This hub demonstrates the platform acting as a central integration layer between SAP ERP,
-          SAP S/4HANA, and Salesforce CRM while preserving the internal inventory and customer order workflows.
+          This hub demonstrates the platform acting as a central integration layer using SAP ERP,
+          SAP S/4HANA, and Salesforce CRM integration patterns while preserving the internal inventory and customer order workflows.
         </p>
       </section>
 
@@ -90,8 +90,8 @@ export function IntegrationsPage() {
             <p><strong>Base URL:</strong> {salesforceHealth.baseUrl}</p>
             <p><strong>Mock Mode:</strong> {salesforceHealth.mockMode ? "Enabled" : "Disabled"}</p>
             <p>
-              Customer orders created inside the platform can be pushed into Salesforce CRM, and
-              customer/order history can be fetched back into the integration layer.
+              Customer orders created inside the platform can be pushed through Salesforce-style APIs, and
+              customer/order history can be fetched back into the integration layer using mock CRM flows.
             </p>
           </div>
         </FormCard>

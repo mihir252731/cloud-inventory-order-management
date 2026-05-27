@@ -1,6 +1,6 @@
 # SAP and Salesforce Integration Notes
 
-This project now positions the platform as a central integration layer between internal inventory operations, SAP ERP / SAP S/4HANA, and Salesforce CRM.
+This project positions the platform as a mock integration layer between internal inventory operations, SAP ERP / SAP S/4HANA patterns, and Salesforce CRM patterns.
 
 ## SAP ERP and SAP S/4HANA
 
@@ -11,7 +11,7 @@ This project now positions the platform as a central integration layer between i
 
 ## Salesforce CRM
 
-- Customer orders can be pushed outbound to Salesforce CRM through dedicated integration endpoints.
+- Customer orders can be pushed through dedicated Salesforce-style integration endpoints in mock mode.
 - Customer account mappings are stored in `customer_accounts`.
 - Customer and order history fetches simulate SOQL-driven CRM lookups.
 - Example Apex trigger and handler assets are included in [salesforce/apex](../salesforce/apex).
@@ -19,6 +19,6 @@ This project now positions the platform as a central integration layer between i
 
 ## Why the integration layer matters
 
-- SAP systems remain the source of truth for inventory and purchase order activity.
-- Salesforce CRM remains the customer-facing system for account and order relationship data.
-- The platform acts as an operational hub that normalizes internal workflows while syncing with both enterprise systems.
+- SAP-inspired flows represent the source-of-truth pattern for inventory and purchase order activity.
+- Salesforce-inspired flows represent the customer-facing account and order relationship pattern.
+- The platform acts as an operational hub that normalizes internal workflows while simulating sync with both enterprise systems.

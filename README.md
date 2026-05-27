@@ -1,14 +1,14 @@
 # Enterprise Inventory & Customer Order Management Platform
 
-Enterprise Inventory & Customer Order Management Platform built with Java, Spring Boot, React, PostgreSQL, Redis, Docker, Kubernetes manifests, and enterprise integration assets for SAP ERP, SAP S/4HANA, and Salesforce CRM. This project simulates an internal operational platform that acts as a central integration hub between warehouse workflows, ERP inventory systems, and CRM-driven customer order visibility.
+Enterprise Inventory & Customer Order Management Platform built with Java, Spring Boot, React, PostgreSQL, Redis, Docker, Kubernetes manifests, and mock enterprise integration assets for SAP ERP, SAP S/4HANA, and Salesforce CRM. This project simulates an internal operational platform that acts as a central integration hub between warehouse workflows, ERP inventory systems, and CRM-driven customer order visibility.
 
 ## Quick Highlights
 
 - Enterprise-style full-stack inventory platform built with Java, Spring Boot, React, PostgreSQL, Redis, Docker, and Kubernetes-ready manifests
 - JWT authentication plus role-based access control for `ADMIN`, `MANAGER`, and `WAREHOUSE_USER`
 - 15+ REST API flows across products, suppliers, inventory, orders, customers, integrations, user access, and dashboard reporting
-- SAP ERP and SAP S/4HANA sync flows for inventory and purchase-order visibility
-- Salesforce CRM integration assets including outbound order sync, customer mapping, Apex trigger examples, and SOQL query samples
+- SAP ERP and SAP S/4HANA mock sync flows for inventory and purchase-order visibility
+- Salesforce CRM mock integration assets including outbound order sync, customer mapping, Apex trigger examples, and SOQL query samples
 - Seeded synthetic business data so reviewers can sign in immediately and test realistic workflows
 
 ## Resume Summary
@@ -16,8 +16,8 @@ Enterprise Inventory & Customer Order Management Platform built with Java, Sprin
 **Enterprise Inventory & Customer Order Management Platform | Java, Spring Boot, React, PostgreSQL, Redis, Docker, SAP ERP, SAP S/4HANA, Salesforce CRM, Apex, SOQL**
 
 - Built an enterprise-grade inventory and order management platform in Java/Spring Boot with 15+ REST APIs, JWT authentication, supplier management, and role-based access control serving as a central integration hub between SAP and Salesforce.
-- Added SAP ERP and SAP S/4HANA OData-style integration flows to synchronize inventory levels and purchase order records into the platform.
-- Connected Salesforce CRM workflows through REST-style sync endpoints, customer account mappings, Apex trigger assets, and SOQL query examples for customer and order history retrieval.
+- Added SAP ERP and SAP S/4HANA OData-style mock integration flows to simulate inventory and purchase order synchronization into the platform.
+- Added Salesforce CRM-style REST integration flows, customer account mappings, Apex example assets, and SOQL query examples to model customer and order history retrieval patterns.
 - Designed PostgreSQL schemas with Redis caching plus Docker and Kubernetes deployment assets, and reduced N+1-style read inefficiencies through fetch optimization and database-side aggregation.
 
 ## Project Overview
@@ -31,8 +31,8 @@ Recruiters often see CRUD demos that stop at "users and products." This project 
 - low-stock alerts and dashboard summaries help support replenishment decisions
 - Redis caching reduces repeated reads for product and inventory-heavy views
 - Kubernetes manifests extend the deployment story beyond local Docker Compose into cluster-based environments
-- SAP ERP and SAP S/4HANA synchronization flows update internal inventory and purchase-order views
-- Salesforce CRM integration assets model outbound order sync plus inbound customer history retrieval
+- SAP ERP and SAP S/4HANA mock synchronization flows update internal inventory and purchase-order views
+- Salesforce CRM mock integration assets model outbound order sync plus inbound customer history retrieval
 
 ## Problem Statement
 
@@ -61,9 +61,9 @@ This project was designed to simulate that operational environment using synthet
 - Redis caching for product catalog and low-stock retrieval
 - Dockerized full-stack setup with PostgreSQL and Redis
 - Kubernetes manifests for backend, frontend, PostgreSQL, and Redis deployment
-- SAP ERP and SAP S/4HANA integration endpoints for inventory and purchase-order synchronization
-- Salesforce CRM integration endpoints for order push and customer history retrieval
-- Apex trigger and SOQL example assets to represent CRM automation patterns
+- SAP ERP and SAP S/4HANA mock integration endpoints for inventory and purchase-order synchronization
+- Salesforce CRM mock integration endpoints for order push and customer history retrieval
+- Apex trigger and SOQL example assets representing CRM automation patterns
 - seeded synthetic data for products, suppliers, orders, customer accounts, sync events, and demo users
 
 ## Tech Stack
@@ -78,9 +78,9 @@ This project was designed to simulate that operational environment using synthet
 - PostgreSQL
 - Redis
 - Maven
-- SAP ERP OData integration patterns
-- SAP S/4HANA OData integration patterns
-- Salesforce CRM REST integration patterns
+- SAP ERP OData-style integration patterns
+- SAP S/4HANA OData-style integration patterns
+- Salesforce CRM REST-style integration patterns
 
 ### Frontend
 
@@ -101,7 +101,7 @@ This project was designed to simulate that operational environment using synthet
 
 - Salesforce Apex trigger examples
 - SOQL query examples
-- SAP and Salesforce integration configuration patterns
+- SAP and Salesforce mock integration configuration patterns
 
 ## System Architecture
 
@@ -382,5 +382,5 @@ The repository is structured with clear folders, setup steps, schema documentati
 
 - The application has been verified locally with Docker Compose, seeded demo accounts, JWT authentication, and protected API access.
 - Kubernetes manifests are included for cluster-oriented deployment workflows, but image names and secrets should be adjusted for your target environment before production use.
-- The SAP and Salesforce pieces are mock-mode integration assets by default so the platform remains runnable without enterprise credentials.
+- The SAP and Salesforce pieces are mock-mode integration assets by default, so the platform remains runnable without enterprise credentials or live sandbox access.
 - Adding real screenshots is the highest-impact next improvement for GitHub presentation quality.

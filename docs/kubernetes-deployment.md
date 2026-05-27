@@ -1,6 +1,6 @@
 # Kubernetes Deployment
 
-This project includes Kubernetes manifests in [k8s/base](../k8s/base) so it can be deployed beyond local Docker Compose.
+This project includes Kubernetes manifests in [k8s/base](../k8s/base) so it can be deployed beyond local Docker Compose. The manifests are provided as deployment assets and were not validated against a live cluster in this repository workflow.
 
 ## Included resources
 
