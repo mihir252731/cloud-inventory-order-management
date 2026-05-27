@@ -49,11 +49,11 @@ export function LoginPage() {
         <section className="rounded-[2rem] bg-slate-950 p-10 text-white shadow-2xl">
           <p className="text-sm uppercase tracking-[0.35em] text-teal-300">Operations Control</p>
           <h1 className="mt-6 text-5xl font-semibold leading-tight">
-            Inventory, suppliers, warehouse activity, and customer orders in one command center.
+            Inventory, ERP sync, CRM workflows, and customer orders in one enterprise control center.
           </h1>
           <p className="mt-6 max-w-xl text-lg text-slate-300">
-            This portfolio project simulates the workflows a growing company uses to manage products,
-            purchase orders, fulfillment, stock movements, and role-based operations.
+            This portfolio project simulates how an internal platform manages products, purchase orders,
+            fulfillment, SAP inventory sync, Salesforce customer order flows, and role-based operations.
           </p>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             <div className="rounded-2xl border border-white/10 bg-white/5 p-4">

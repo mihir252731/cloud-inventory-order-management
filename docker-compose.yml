@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: cloud_inventory_postgres
+    container_name: enterprise_inventory_postgres
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-cloud_inventory}
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
@@ -14,7 +14,7 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: cloud_inventory_redis
+    container_name: enterprise_inventory_redis
     ports:
       - "6379:6379"
 
@@ -22,7 +22,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: cloud_inventory_backend
+    container_name: enterprise_inventory_backend
     environment:
       SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL:-jdbc:postgresql://postgres:5432/cloud_inventory}
       SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME:-postgres}
@@ -44,7 +44,7 @@ services:
       dockerfile: Dockerfile
       args:
         VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8080}
-    container_name: cloud_inventory_frontend
+    container_name: enterprise_inventory_frontend
     depends_on:
       - backend
     ports:

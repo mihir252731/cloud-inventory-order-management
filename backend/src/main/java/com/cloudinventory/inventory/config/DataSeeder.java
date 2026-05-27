@@ -8,6 +8,12 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.cloudinventory.inventory.customer.CustomerAccount;
+import com.cloudinventory.inventory.customer.CustomerAccountRepository;
+import com.cloudinventory.inventory.integration.common.ExternalSystemType;
+import com.cloudinventory.inventory.integration.common.IntegrationSyncEventService;
+import com.cloudinventory.inventory.integration.common.SyncDirection;
+import com.cloudinventory.inventory.integration.common.SyncStatus;
 import com.cloudinventory.inventory.orders.CustomerOrder;
 import com.cloudinventory.inventory.orders.CustomerOrderRepository;
 import com.cloudinventory.inventory.orders.OrderItem;
@@ -35,6 +41,8 @@ public class DataSeeder implements CommandLineRunner {
     private final ProductRepository productRepository;
     private final CustomerOrderRepository customerOrderRepository;
     private final PurchaseOrderRepository purchaseOrderRepository;
+    private final CustomerAccountRepository customerAccountRepository;
+    private final IntegrationSyncEventService integrationSyncEventService;
     private final PasswordEncoder passwordEncoder;
 
     public DataSeeder(
@@ -44,6 +52,8 @@ public class DataSeeder implements CommandLineRunner {
             ProductRepository productRepository,
             CustomerOrderRepository customerOrderRepository,
             PurchaseOrderRepository purchaseOrderRepository,
+            CustomerAccountRepository customerAccountRepository,
+            IntegrationSyncEventService integrationSyncEventService,
             PasswordEncoder passwordEncoder
     ) {
         this.roleRepository = roleRepository;
@@ -52,6 +62,8 @@ public class DataSeeder implements CommandLineRunner {
         this.productRepository = productRepository;
         this.customerOrderRepository = customerOrderRepository;
         this.purchaseOrderRepository = purchaseOrderRepository;
+        this.customerAccountRepository = customerAccountRepository;
+        this.integrationSyncEventService = integrationSyncEventService;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -61,6 +73,8 @@ public class DataSeeder implements CommandLineRunner {
         seedUsers();
         seedSuppliersAndProducts();
         seedOrders();
+        seedCustomerAccounts();
+        seedIntegrationEvents();
     }
 
     private void seedRoles() {
@@ -173,6 +187,78 @@ public class DataSeeder implements CommandLineRunner {
             purchaseOrder.setNotes("Restocking electronics before monthly forecast spike.");
             purchaseOrderRepository.save(purchaseOrder);
         }
+    }
+
+    private void seedCustomerAccounts() {
+        if (customerAccountRepository.count() > 0) {
+            return;
+        }
+
+        customerAccountRepository.save(createCustomerAccount(
+                "Midwest Health Systems",
+                "procurement@midwesthealth.com",
+                "SF-ACC-3001",
+                "SF-CON-3001",
+                "Enterprise",
+                "North America"
+        ));
+        customerAccountRepository.save(createCustomerAccount(
+                "Vertex Retail Group",
+                "buying@vertexretail.com",
+                "SF-ACC-3002",
+                "SF-CON-3002",
+                "Strategic",
+                "North America"
+        ));
+    }
+
+    private CustomerAccount createCustomerAccount(
+            String customerName,
+            String customerEmail,
+            String salesforceAccountId,
+            String salesforceContactId,
+            String customerTier,
+            String region
+    ) {
+        CustomerAccount account = new CustomerAccount();
+        account.setCustomerName(customerName);
+        account.setCustomerEmail(customerEmail);
+        account.setSalesforceAccountId(salesforceAccountId);
+        account.setSalesforceContactId(salesforceContactId);
+        account.setCustomerTier(customerTier);
+        account.setRegion(region);
+        return account;
+    }
+
+    private void seedIntegrationEvents() {
+        if (!integrationSyncEventService.getRecentEvents().isEmpty()) {
+            return;
+        }
+
+        integrationSyncEventService.record(
+                ExternalSystemType.SAP_ERP,
+                SyncDirection.INBOUND,
+                SyncStatus.MOCK_SUCCESS,
+                "inventory-sync",
+                "MAT-1001",
+                "Seeded SAP ERP inventory synchronization event."
+        );
+        integrationSyncEventService.record(
+                ExternalSystemType.SAP_S4HANA,
+                SyncDirection.INBOUND,
+                SyncStatus.MOCK_SUCCESS,
+                "purchase-order-sync",
+                "PO-S4-3002",
+                "Seeded SAP S/4HANA purchase order synchronization event."
+        );
+        integrationSyncEventService.record(
+                ExternalSystemType.SALESFORCE_CRM,
+                SyncDirection.OUTBOUND,
+                SyncStatus.MOCK_SUCCESS,
+                "salesforce-order-push",
+                "SO-DEMO-1001",
+                "Seeded Salesforce CRM outbound order sync event."
+        );
     }
 
     private OrderItem createOrderItem(CustomerOrder order, Product product, int quantity) {

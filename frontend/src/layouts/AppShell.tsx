@@ -10,6 +10,7 @@ interface NavigationItem {
 
 const navigation: NavigationItem[] = [
   { label: "Dashboard", path: "/", roles: ["ADMIN", "MANAGER", "WAREHOUSE_USER"] },
+  { label: "Integration Hub", path: "/integrations", roles: ["ADMIN", "MANAGER"] },
   { label: "Products", path: "/products", roles: ["ADMIN", "MANAGER", "WAREHOUSE_USER"] },
   { label: "Suppliers", path: "/suppliers", roles: ["ADMIN", "MANAGER", "WAREHOUSE_USER"] },
   { label: "Inventory", path: "/inventory", roles: ["ADMIN", "MANAGER", "WAREHOUSE_USER"] },
@@ -32,7 +33,7 @@ export function AppShell() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-teal-300">Enterprise Demo</p>
-            <h1 className="text-2xl font-semibold">Cloud Inventory &amp; Order Management</h1>
+            <h1 className="text-2xl font-semibold">Enterprise Inventory &amp; Customer Order Platform</h1>
           </div>
           <div className="text-right">
             <p className="text-sm font-medium">{auth?.fullName}</p>

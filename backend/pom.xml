@@ -11,10 +11,10 @@
     </parent>
 
     <groupId>com.cloudinventory</groupId>
-    <artifactId>cloud-inventory-backend</artifactId>
+    <artifactId>enterprise-inventory-platform-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>cloud-inventory-backend</name>
-    <description>Cloud-Based Inventory &amp; Order Management System backend</description>
+    <name>enterprise-inventory-platform-backend</name>
+    <description>Enterprise Inventory &amp; Customer Order Management Platform backend</description>
 
     <properties>
         <java.version>17</java.version>

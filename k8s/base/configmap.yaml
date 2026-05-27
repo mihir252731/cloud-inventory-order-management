@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: cloud-inventory-config
-  namespace: cloud-inventory
+  name: enterprise-inventory-config
+  namespace: enterprise-inventory
 data:
   POSTGRES_DB: cloud_inventory
   POSTGRES_USER: postgres

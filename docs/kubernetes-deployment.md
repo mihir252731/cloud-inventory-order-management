@@ -17,8 +17,8 @@ This project includes Kubernetes manifests in [k8s/base](../k8s/base) so it can 
 
 The manifests currently reference:
 
-- `mihir252731/cloud-inventory-backend:latest`
-- `mihir252731/cloud-inventory-frontend:latest`
+- `mihir252731/enterprise-inventory-platform-backend:latest`
+- `mihir252731/enterprise-inventory-platform-frontend:latest`
 
 Update those image names if you publish under a different Docker Hub or registry namespace.
 
@@ -38,8 +38,8 @@ kubectl apply -k k8s/base
 3. Check rollout status:
 
 ```bash
-kubectl get pods -n cloud-inventory
-kubectl get svc -n cloud-inventory
+kubectl get pods -n enterprise-inventory
+kubectl get svc -n enterprise-inventory
 ```
 
 ## Why this matters

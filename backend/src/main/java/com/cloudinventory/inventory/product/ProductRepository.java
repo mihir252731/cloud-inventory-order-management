@@ -17,6 +17,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @EntityGraph(attributePaths = {"supplier"})
     Optional<Product> findById(Long id);
 
+    @EntityGraph(attributePaths = {"supplier"})
+    Optional<Product> findBySku(String sku);
+
     @Query("select p from Product p join fetch p.supplier where p.stockQuantity <= p.reorderLevel")
     List<Product> findLowStockProducts();
 

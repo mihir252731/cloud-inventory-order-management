@@ -1,6 +1,6 @@
 spring:
   application:
-    name: cloud-inventory-backend
+    name: enterprise-inventory-platform-backend
   datasource:
     url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/cloud_inventory}
     username: ${SPRING_DATASOURCE_USERNAME:postgres}
@@ -30,6 +30,19 @@ app:
     allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:3000}
   seed:
     enabled: ${APP_SEED_ENABLED:true}
+  integrations:
+    sap:
+      erp-base-url: ${APP_SAP_ERP_BASE_URL:https://mock-sap-erp.example.com/odata}
+      s4hana-base-url: ${APP_SAP_S4HANA_BASE_URL:https://mock-s4hana.example.com/odata}
+      inventory-path: ${APP_SAP_INVENTORY_PATH:/A_InventoryStock}
+      purchase-order-path: ${APP_SAP_PURCHASE_ORDER_PATH:/A_PurchaseOrder}
+      mock-mode: ${APP_SAP_MOCK_MODE:true}
+    salesforce:
+      base-url: ${APP_SALESFORCE_BASE_URL:https://mock-salesforce.example.com/services/data/v60.0}
+      orders-path: ${APP_SALESFORCE_ORDERS_PATH:/sobjects/Order}
+      accounts-path: ${APP_SALESFORCE_ACCOUNTS_PATH:/sobjects/Account}
+      history-path: ${APP_SALESFORCE_HISTORY_PATH:/query}
+      mock-mode: ${APP_SALESFORCE_MOCK_MODE:true}
 
 logging:
   level:

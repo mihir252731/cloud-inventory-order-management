@@ -8,9 +8,11 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cloudinventory.inventory.customer.CustomerAccountService;
 import com.cloudinventory.inventory.inventory.InventoryTransaction;
 import com.cloudinventory.inventory.inventory.InventoryTransactionRepository;
 import com.cloudinventory.inventory.inventory.InventoryTransactionType;
+import com.cloudinventory.inventory.integration.salesforce.SalesforceIntegrationService;
 import com.cloudinventory.inventory.product.Product;
 import com.cloudinventory.inventory.product.ProductRepository;
 import com.cloudinventory.inventory.product.ProductService;
@@ -28,6 +30,8 @@ public class OrderService {
     private final ProductRepository productRepository;
     private final SupplierService supplierService;
     private final InventoryTransactionRepository inventoryTransactionRepository;
+    private final CustomerAccountService customerAccountService;
+    private final SalesforceIntegrationService salesforceIntegrationService;
 
     public OrderService(
             CustomerOrderRepository customerOrderRepository,
@@ -35,7 +39,9 @@ public class OrderService {
             ProductService productService,
             ProductRepository productRepository,
             SupplierService supplierService,
-            InventoryTransactionRepository inventoryTransactionRepository
+            InventoryTransactionRepository inventoryTransactionRepository,
+            CustomerAccountService customerAccountService,
+            SalesforceIntegrationService salesforceIntegrationService
     ) {
         this.customerOrderRepository = customerOrderRepository;
         this.purchaseOrderRepository = purchaseOrderRepository;
@@ -43,6 +49,8 @@ public class OrderService {
         this.productRepository = productRepository;
         this.supplierService = supplierService;
         this.inventoryTransactionRepository = inventoryTransactionRepository;
+        this.customerAccountService = customerAccountService;
+        this.salesforceIntegrationService = salesforceIntegrationService;
     }
 
     @Transactional
@@ -85,7 +93,10 @@ public class OrderService {
         }
 
         order.setTotalAmount(totalAmount);
-        return customerOrderRepository.save(order);
+        CustomerOrder savedOrder = customerOrderRepository.save(order);
+        customerAccountService.getOrCreate(savedOrder.getCustomerName(), savedOrder.getCustomerEmail());
+        salesforceIntegrationService.pushOrder(savedOrder.getId());
+        return savedOrder;
     }
 
     public List<CustomerOrder> getCustomerOrders() {

@@ -40,3 +40,27 @@
 ## Users
 
 - `GET /api/users`
+
+## Customers
+
+- `GET /api/customers`
+
+## Integrations
+
+### Overview
+
+- `GET /api/integrations/overview`
+
+### SAP ERP / SAP S/4HANA
+
+- `GET /api/integrations/sap/health`
+- `POST /api/integrations/sap/inventory-sync`
+- `POST /api/integrations/sap/purchase-orders/sync`
+- `GET /api/integrations/sap/events`
+
+### Salesforce CRM
+
+- `GET /api/integrations/salesforce/health`
+- `POST /api/integrations/salesforce/orders/{orderId}/push`
+- `GET /api/integrations/salesforce/history/{customerEmail}`
+- `GET /api/integrations/salesforce/events`

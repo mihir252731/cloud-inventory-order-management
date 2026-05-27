@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
-  namespace: cloud-inventory
+  namespace: enterprise-inventory
 spec:
   replicas: 1
   selector:
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: mihir252731/cloud-inventory-frontend:latest
+          image: mihir252731/enterprise-inventory-platform-frontend:latest
           ports:
             - containerPort: 80
 ---
@@ -23,7 +23,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: frontend
-  namespace: cloud-inventory
+  namespace: enterprise-inventory
 spec:
   type: NodePort
   selector:

@@ -3,6 +3,7 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import { AppShell } from "./layouts/AppShell";
 import { DashboardPage } from "./pages/DashboardPage";
 import { InventoryPage } from "./pages/InventoryPage";
+import { IntegrationsPage } from "./pages/IntegrationsPage";
 import { LoginPage } from "./pages/LoginPage";
 import { LowStockPage } from "./pages/LowStockPage";
 import { OrdersPage } from "./pages/OrdersPage";
@@ -17,6 +18,7 @@ export default function App() {
       <Route element={<ProtectedRoute />}>
         <Route element={<AppShell />}>
           <Route path="/" element={<DashboardPage />} />
+          <Route path="/integrations" element={<IntegrationsPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/suppliers" element={<SuppliersPage />} />
           <Route path="/inventory" element={<InventoryPage />} />

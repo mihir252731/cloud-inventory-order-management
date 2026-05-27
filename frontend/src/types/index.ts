@@ -97,3 +97,45 @@ export interface DashboardSummary {
   pendingPurchaseOrders: number;
   activeUsers: number;
 }
+
+export interface CustomerAccount {
+  id: number;
+  customerName: string;
+  customerEmail: string;
+  salesforceAccountId: string;
+  salesforceContactId: string;
+  customerTier: string;
+  region: string;
+}
+
+export interface IntegrationSyncEvent {
+  id: number;
+  externalSystem: string;
+  direction: string;
+  status: string;
+  operationName: string;
+  referenceId: string;
+  detailMessage: string;
+}
+
+export interface IntegrationOverview {
+  projectName: string;
+  sapMockMode: boolean;
+  salesforceMockMode: boolean;
+  recentEvents: IntegrationSyncEvent[];
+}
+
+export interface SapHealth {
+  integrationName: string;
+  erpBaseUrl: string;
+  s4hanaBaseUrl: string;
+  mockMode: boolean;
+  status: string;
+}
+
+export interface SalesforceHealth {
+  integrationName: string;
+  baseUrl: string;
+  mockMode: boolean;
+  status: string;
+}

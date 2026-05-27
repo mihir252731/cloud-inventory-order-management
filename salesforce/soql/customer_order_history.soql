@@ -1,0 +1,11 @@
+SELECT Id,
+       Name,
+       Status__c,
+       External_Order_Number__c,
+       Account__r.Name,
+       Account__r.External_Account_Id__c,
+       LastModifiedDate
+FROM Order__c
+WHERE Account__r.PersonEmail = :customerEmail
+ORDER BY LastModifiedDate DESC
+LIMIT 25

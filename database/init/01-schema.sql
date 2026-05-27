@@ -86,3 +86,25 @@ CREATE TABLE IF NOT EXISTS purchase_orders (
     notes TEXT,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS customer_accounts (
+    id BIGSERIAL PRIMARY KEY,
+    customer_name VARCHAR(255) NOT NULL,
+    customer_email VARCHAR(255) NOT NULL UNIQUE,
+    salesforce_account_id VARCHAR(255) NOT NULL UNIQUE,
+    salesforce_contact_id VARCHAR(255) NOT NULL,
+    customer_tier VARCHAR(255) NOT NULL,
+    region VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS integration_sync_events (
+    id BIGSERIAL PRIMARY KEY,
+    external_system VARCHAR(50) NOT NULL,
+    direction VARCHAR(50) NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    operation_name VARCHAR(255) NOT NULL,
+    reference_id VARCHAR(255) NOT NULL,
+    detail_message TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

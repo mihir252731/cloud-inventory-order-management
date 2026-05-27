@@ -19,10 +19,10 @@ export function DashboardPage() {
     <div className="space-y-6">
       <section className="panel p-6">
         <p className="text-sm uppercase tracking-[0.25em] text-teal-700">Overview</p>
-        <h2 className="mt-2 text-3xl font-semibold text-slate-900">Operations dashboard summary</h2>
+        <h2 className="mt-2 text-3xl font-semibold text-slate-900">Enterprise operations and integration summary</h2>
         <p className="mt-3 max-w-3xl text-sm text-slate-600">
-          Use this view to track stock health, open orders, active users, and supplier coverage across
-          the warehouse network.
+          Use this view to track stock health, open orders, active users, supplier coverage, and the
+          internal operational footprint that supports SAP and Salesforce integration workflows.
         </p>
       </section>
 

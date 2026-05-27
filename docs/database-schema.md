@@ -11,6 +11,8 @@
 - `orders`: Customer sales orders with lifecycle status and total amount.
 - `order_items`: Line items inside each customer order.
 - `purchase_orders`: Supplier-facing replenishment orders for restocking inventory.
+- `customer_accounts`: Internal-to-Salesforce customer mapping records used for CRM synchronization.
+- `integration_sync_events`: Cross-system sync audit trail for SAP and Salesforce operations.
 
 ## Relationship summary
 
@@ -23,6 +25,7 @@
 ## Why this schema works well
 
 - It separates master data (`products`, `suppliers`, `users`) from transactional data (`orders`, `inventory_transactions`, `purchase_orders`).
+- It adds integration-layer persistence for customer CRM mappings and cross-system synchronization events.
 - It supports auditability for warehouse operations through explicit inventory movement records.
 - It keeps role-based access control extensible through normalized role tables.
 - It reflects realistic enterprise inventory workflows instead of a toy single-table CRUD design.
