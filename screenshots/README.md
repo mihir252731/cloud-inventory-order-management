@@ -8,3 +8,4 @@ Add application screenshots here after running the project locally. Recommended 
 - `inventory-page.png`
 - `orders-page.png`
 - `low-stock-alerts.png`
+- `integrations-page.png`

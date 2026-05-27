@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Screenshot Auth Helper</title>
+  </head>
+  <body>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get("token");
+      const fullName = params.get("fullName") || "Demo Admin";
+      const username = params.get("username") || "admin";
+      const email = params.get("email") || "admin@example.com";
+      const roles = (params.get("roles") || "ADMIN").split(",");
+      const route = params.get("route") || "/";
+
+      if (token) {
+        localStorage.setItem(
+          "cloud_inventory_auth",
+          JSON.stringify({ token, fullName, username, email, roles })
+        );
+      }
+
+      window.location.replace(route);
+    </script>
+  </body>
+</html>

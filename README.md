@@ -304,6 +304,18 @@ Integration notes: [sap-salesforce-integration.md](docs/sap-salesforce-integrati
    `npm install`
    `npm run dev`
 
+### Option 3: Self-Contained Demo Profile
+
+Use this when you want to review the app without local PostgreSQL or Redis services:
+
+1. Start the frontend from `/frontend`:
+   `npm install`
+   `npm run dev`
+2. Start the backend from `/backend` with the demo profile:
+   `SPRING_PROFILES_ACTIVE=demo java -jar target/enterprise-inventory-platform-backend-0.0.1-SNAPSHOT.jar`
+
+The demo profile uses an in-memory H2 database, simple cache mode, seeded demo data, and mock enterprise integrations so the full UI can be reviewed in a self-contained way.
+
 ## Screenshots
 
 Place screenshots in [screenshots/README.md](screenshots/README.md) using names like:
